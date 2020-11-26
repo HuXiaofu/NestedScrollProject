@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent
+        android:id="@+id/nestedparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_shop" />
+
+        <TextView
+            android:id="@+id/my_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="我是标题"
+            android:textSize="20sp" />
+
+
+
+        <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild
+            android:id="@+id/nestedchild"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp" />
+
+        </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild>
+    </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent>
+</androidx.constraintlayout.widget.ConstraintLayout>

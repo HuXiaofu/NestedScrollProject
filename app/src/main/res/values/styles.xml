@@ -1,0 +1,22 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+
+
+    <!-- ToolBar样式 .-->
+    <style name="toolbar_theme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!--修改toolbar的Title颜色.正确-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!--错误,网上有些资料是这样的,然而这样写编译都会报错-->
+        <!--修改toolbar的subtitle(小标题)颜色.正确-->
+        <item name="subtitleTextColor">@android:color/white</item>
+    </style>
+
+</resources>
