@@ -22,9 +22,9 @@
             android:id="@+id/my_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center"
-            android:text="我是标题"
+            android:text="@string/go_play"
             android:textSize="20sp" />
 
 

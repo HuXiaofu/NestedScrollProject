@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NestedScrollDemo</string>
+    <string name="go_play">去支付</string>
 </resources>
