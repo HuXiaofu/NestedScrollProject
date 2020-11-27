@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
  *@time：2020/11/27
  *@author:hugaojian
  **/
- class SplashActivity : BaseActivity() {
+class SplashActivity : BaseActivity() {
     var count = 4;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit
                 .subscribe(Consumer {
                     tv_splash_skip.text = "跳过( $it )"
                 }, Consumer {}, Action {
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))//::表示把一个方法当做一个参数，传递到另一个方法中进行使用，通俗的来讲就是引用一个方法
                     finish()
                 }
                 )
