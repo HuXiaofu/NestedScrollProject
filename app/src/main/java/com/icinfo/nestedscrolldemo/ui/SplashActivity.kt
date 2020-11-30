@@ -7,6 +7,7 @@ import com.icinfo.nestedscrolldemo.R
 import com.icinfo.nestedscrolldemo.base.BaseActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -18,11 +19,11 @@ import java.util.concurrent.TimeUnit
  *@author:hugaojian
  **/
 class SplashActivity : BaseActivity() {
-    var count = 4;
+    private var count = 4
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        Observable.interval(0, 1, TimeUnit.SECONDS)
+        val disposable = Observable.interval(0, 1, TimeUnit.SECONDS)
                 .take((count + 1).toLong())
                 .map { count - it }
                 .compose {
@@ -34,7 +35,12 @@ class SplashActivity : BaseActivity() {
                 }, Consumer {}, Action {
                     startActivity(Intent(this, MainActivity::class.java))//::表示把一个方法当做一个参数，传递到另一个方法中进行使用，通俗的来讲就是引用一个方法
                     finish()
-                }
-                )
+                })
+
+        tv_splash_skip.setOnClickListener {
+            disposable.dispose()
+            startActivity(Intent(this, MainActivity::class.java))//::表示把一个方法当做一个参数，传递到另一个方法中进行使用，通俗的来讲就是引用一个方法
+            finish()
+        }
     }
 }

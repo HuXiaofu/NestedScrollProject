@@ -4,6 +4,11 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/polina" />
+            android:src="@drawable/alex" />
+    </item>
+    <item>
+        <bitmap
+            android:gravity="bottom|fill_horizontal"
+            android:src="@drawable/pink_bg"/>
     </item>
 </layer-list>
