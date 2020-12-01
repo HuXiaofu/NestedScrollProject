@@ -16,6 +16,7 @@ import com.icinfo.nestedscrolldemo.ui.home.model.ShopModel
 import com.icinfo.nestedscrolldemo.utils.GlideImageLoader
 import com.icinfo.nestedscrolldemo.widget.decoration.HomeGridDecoration
 import com.icinfo.nestedscrolldemo.widget.decoration.HomeLinearDecoration
+import com.icinfo.nestedscrolldemo.widget.decoration.LinearDividerItemDecoration
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -53,7 +54,7 @@ class HomeFragment : BaseFragment(), HomeFragmentContract.View {
 
     private fun initLittleModuleRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(activity)
-        linearLayoutManager.orientation=LinearLayoutManager.HORIZONTAL
+        linearLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         recyclerview_little_module.layoutManager = linearLayoutManager
         recyclerview_little_module.addItemDecoration(HomeLinearDecoration(12f))
         recyclerview_little_module.itemAnimator = DefaultItemAnimator()
