@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_tab"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_menu_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_menu_nearby"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_menu_home"
+                style="@style/menuIconStyle"
+                android:gravity="center"
+                android:src="@drawable/select_icon_menu_home" />
+
+            <TextView
+                android:id="@+id/tv_menu_home"
+                style="@style/menuTextStyle"
+                android:gravity="center"
+                android:text="首页" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_menu_nearby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_menu_discover"
+            app:layout_constraintStart_toEndOf="@+id/ll_menu_home">
+
+            <ImageView
+                android:id="@+id/iv_menu_nearby"
+                style="@style/menuIconStyle"
+                android:gravity="center"
+                android:src="@drawable/select_icon_menu_nearby" />
+
+            <TextView
+                android:id="@+id/tv_menu_nearby"
+                style="@style/menuTextStyle"
+                android:gravity="center"
+                android:text="附近" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_menu_discover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_menu_order"
+            app:layout_constraintStart_toEndOf="@+id/ll_menu_nearby">
+
+            <ImageView
+                android:id="@+id/iv_menu_discover"
+                style="@style/menuIconStyle"
+                android:gravity="center"
+                android:src="@drawable/select_icon_menu_discover" />
+
+            <TextView
+                android:id="@+id/tv_menu_discover"
+                style="@style/menuTextStyle"
+                android:gravity="center"
+                android:text="发现"
+
+                app:layout_constraintEnd_toStartOf="@+id/tv_menu_order"
+                app:layout_constraintStart_toEndOf="@+id/tv_menu_nearby" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_menu_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_menu_mine"
+            app:layout_constraintStart_toEndOf="@+id/ll_menu_discover">
+
+            <ImageView
+                android:id="@+id/iv_menu_order"
+                style="@style/menuIconStyle"
+                android:gravity="center"
+                android:src="@drawable/select_icon_menu_order" />
+
+            <TextView
+                android:id="@+id/tv_menu_order"
+                style="@style/menuTextStyle"
+                android:gravity="center"
+                android:text="订单"
+
+                app:layout_constraintEnd_toStartOf="@+id/tv_menu_mine"
+                app:layout_constraintStart_toEndOf="@+id/tv_menu_discover" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_menu_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ll_menu_order">
+
+            <ImageView
+                android:id="@+id/iv_menu_mine"
+                style="@style/menuIconStyle"
+                android:gravity="center"
+                android:src="@drawable/select_icon_menu_mine" />
+
+            <TextView
+                android:id="@+id/tv_menu_mine"
+                style="@style/menuTextStyle"
+                android:gravity="center"
+                android:text="我的"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_menu_order" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
