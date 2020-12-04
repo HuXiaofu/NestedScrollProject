@@ -1,6 +1,5 @@
 package com.icinfo.nestedscrolldemo.ui.home
 
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.icinfo.nestedscrolldemo.MainActivity
 import com.icinfo.nestedscrolldemo.R
 import com.icinfo.nestedscrolldemo.base.BaseFragment
-import com.icinfo.nestedscrolldemo.ui.HomeFragmentPresenter
 import com.icinfo.nestedscrolldemo.ui.home.model.IconTitleModel
 import com.icinfo.nestedscrolldemo.ui.home.model.ShopModel
 import com.icinfo.nestedscrolldemo.utils.GlideImageLoader
 import com.icinfo.nestedscrolldemo.widget.decoration.HomeGridDecoration
 import com.icinfo.nestedscrolldemo.widget.decoration.HomeLinearDecoration
-import com.icinfo.nestedscrolldemo.widget.decoration.LinearDividerItemDecoration
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -37,6 +35,12 @@ class HomeFragment : BaseFragment(), HomeFragmentContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        if (activity != null) {
+            activity.let {
+                it as MainActivity
+                it.setHideStatusBar(true)
+            }
+        }
         init()
     }
 

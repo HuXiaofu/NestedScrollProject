@@ -10,4 +10,9 @@ object DesityUtils {
         val scale = Resources.getSystem().displayMetrics.density
         return (dpValue*scale+0.5f).toInt()
     }
+
+    fun dip2sp(dp: Int): Float {
+        val scale=Resources.getSystem().displayMetrics.scaledDensity
+        return dp/scale
+    }
 }

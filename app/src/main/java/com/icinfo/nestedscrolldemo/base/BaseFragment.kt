@@ -1,6 +1,9 @@
 package com.icinfo.nestedscrolldemo.base
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
@@ -30,4 +33,5 @@ open class BaseFragment : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden)
     }
+
 }

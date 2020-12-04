@@ -1,4 +1,4 @@
-package com.icinfo.nestedscrolldemo.ui
+package com.icinfo.nestedscrolldemo.ui.home
 
 import com.icinfo.nestedscrolldemo.R
 import com.icinfo.nestedscrolldemo.ui.home.HomeFragmentContract

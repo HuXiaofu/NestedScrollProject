@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NestedScrollDemo</string>
     <string name="go_play">去支付</string>
+    <string name="discover_search_hint">搜索商品/品类</string>
 </resources>

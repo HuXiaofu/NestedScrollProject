@@ -1,6 +1,7 @@
 package com.icinfo.nestedscrolldemo;
 
 import android.content.Context;
+import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -12,18 +13,23 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.NestedScrollingParent;
 import androidx.core.view.NestedScrollingParentHelper;
 
+import com.icinfo.nestedscrolldemo.widget.NewFlipperView;
+import com.youth.banner.Banner;
+
 /**
  * @time：2020/11/24
  * @author:hugaojian
  **/
 public class MyCustomNestedScrollingParent extends LinearLayout implements NestedScrollingParent {
 
-    private ImageView img;
-    private TextView tv;
+    private View mLayout;
+    private Banner mBanner;
+    private NewFlipperView mNewFlipperView;
     private MyCustomNestedScrollingChild myNestedScrollChild;
     private NestedScrollingParentHelper mNestedScrollingParentHelper;
-    private int imgHeight;
-    private int tvHeight;
+    private int mLayoutHeight;
+    private int mBannerHeight;
+    private int mNewFlipperViewHeight;
 
 
     public MyCustomNestedScrollingParent(Context context) {
@@ -44,29 +50,41 @@ public class MyCustomNestedScrollingParent extends LinearLayout implements Neste
     protected void onFinishInflate() {
         super.onFinishInflate();
         //获取第一个子view，ImageView
-        img = (ImageView) getChildAt(0);
+        mLayout = getChildAt(0);
 
         //获取第二个子view，TextView
-        tv = (TextView) getChildAt(1);
-        //获取第三个子view，MyCustomNestedScrollingChild
-        myNestedScrollChild = (MyCustomNestedScrollingChild) getChildAt(2);
+        mBanner = (Banner) getChildAt(1);
 
-        img.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        mNewFlipperView = (NewFlipperView) getChildAt(2);
+        //获取第4个子view，MyCustomNestedScrollingChild
+        myNestedScrollChild = (MyCustomNestedScrollingChild) getChildAt(3);
+
+        mLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 //当布局变化时，获取图片布局的高度
-                if (imgHeight <= 0) {
-                    imgHeight = img.getMeasuredHeight();
+                if (mLayoutHeight <= 0) {
+                    mLayoutHeight = mLayout.getMeasuredHeight();
 //                    tv.setVisibility(VISIBLE);
                 }
             }
         });
-        tv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        mBanner.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 //当布局变化时，获取文字布局的高度
-                if (tvHeight <= 0) {
-                    tvHeight = tv.getMeasuredHeight();
+                if (mBannerHeight <= 0) {
+                    mBannerHeight = mBanner.getMeasuredHeight();
+                }
+            }
+        });
+
+    mNewFlipperView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //当布局变化时，获取文字布局的高度
+                if (mNewFlipperViewHeight <= 0) {
+                    mNewFlipperViewHeight = mBanner.getMeasuredHeight();
                 }
             }
         });
@@ -131,7 +149,6 @@ public class MyCustomNestedScrollingParent extends LinearLayout implements Neste
     public boolean showImg(int dy) {
         if (dy > 0) {
             if (getScrollY() > 0 && myNestedScrollChild.getScrollY() == 0) {
-                tv.setVisibility(GONE);
                 return true;
             }
         }
@@ -142,8 +159,7 @@ public class MyCustomNestedScrollingParent extends LinearLayout implements Neste
     //上拉的时候，是否要向上滚动，隐藏图片
     public boolean hideImg(int dy) {
         if (dy < 0) {
-            if (getScrollY() < imgHeight) {
-                    tv.setVisibility(VISIBLE);
+            if (getScrollY() < (mLayoutHeight+mBannerHeight)) {
                 return true;
             }
         }
@@ -156,8 +172,8 @@ public class MyCustomNestedScrollingParent extends LinearLayout implements Neste
         if (y < 0) {
             y = 0;
         }
-        if (y > imgHeight) {
-            y = imgHeight;
+        if (y > mLayoutHeight+mBannerHeight) {
+            y = mLayoutHeight+mBannerHeight;
         }
 
         super.scrollTo(x, y);

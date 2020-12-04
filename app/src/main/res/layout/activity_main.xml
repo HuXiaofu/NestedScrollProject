@@ -6,42 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--    <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent-->
-    <!--        android:id="@+id/nestedparent"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <ImageView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="180dp"-->
-    <!--            android:scaleType="fitXY"-->
-    <!--            android:src="@drawable/kevin" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/my_title"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="50dp"-->
-    <!--            android:background="@color/colorPrimaryDark"-->
-    <!--            android:gravity="center"-->
-    <!--            android:text="@string/go_play"-->
-    <!--            android:textSize="20sp" />-->
-
-
-    <!--        <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild-->
-    <!--            android:id="@+id/nestedchild"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:orientation="vertical">-->
-
-
-    <!--            <TextView-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:textSize="30sp" />-->
-
-    <!--        </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild>-->
-    <!--    </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent>-->
     <com.icinfo.nestedscrolldemo.widget.CustomBottomTabWidget
         android:id="@+id/bottom_tab"
         android:layout_width="match_parent"
