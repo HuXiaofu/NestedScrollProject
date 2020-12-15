@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.include_main_tab.view.*
 class CustomBottomTabWidget: LinearLayout, View.OnClickListener {
 
     private lateinit var mFragmentManager: FragmentManager
-    private lateinit var mFragmentList: List<BaseFragment>
+    private lateinit var mFragmentList: List<Fragment>
     private lateinit var mAdapter: TabPagerAdapter
 
     constructor(context: Context?) : super(context) {
@@ -44,7 +45,7 @@ class CustomBottomTabWidget: LinearLayout, View.OnClickListener {
         ll_menu_mine.setOnClickListener(this)
     }
 
-    public fun init(fm: FragmentManager, fragmentList: List<BaseFragment>) {
+    public fun init(fm: FragmentManager, fragmentList: List<Fragment>) {
         mFragmentManager = fm
         mFragmentList = fragmentList
         initViewPager()

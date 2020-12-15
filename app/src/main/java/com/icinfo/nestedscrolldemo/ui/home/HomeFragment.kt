@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.icinfo.nestedscrolldemo.MainActivity
 import com.icinfo.nestedscrolldemo.R
+import com.icinfo.nestedscrolldemo.base.AppLazyFragment
 import com.icinfo.nestedscrolldemo.base.BaseFragment
 import com.icinfo.nestedscrolldemo.ui.home.model.IconTitleModel
 import com.icinfo.nestedscrolldemo.ui.home.model.ShopModel
@@ -23,25 +24,13 @@ import kotlinx.android.synthetic.main.fragment_home.*
  *@time：2020/12/1
  *@author:hugaojian
  **/
-class HomeFragment : BaseFragment(), HomeFragmentContract.View {
+class HomeFragment : AppLazyFragment<HomeFragmentContract.Presenter<HomeFragmentContract.View>>(), HomeFragmentContract.View {
 
-    private lateinit var presenter: HomeFragmentContract.Presenter
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        presenter = HomeFragmentPresenter()
-        presenter.setContractView(this)
-        return inflater.inflate(R.layout.fragment_home, null)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (activity != null) {
-            activity.let {
-                it as MainActivity
-                it.setHideStatusBar(true)
-            }
-        }
-        init()
+    override fun init(savedInstanceState: Bundle?) {
+        super.init(savedInstanceState)
+        initBanner()
+        initLittleModuleRecyclerView()
+        initShopsRecyclerView()
     }
 
     override fun addViewToBigModule(iconTitleModel: IconTitleModel) {
@@ -50,11 +39,10 @@ class HomeFragment : BaseFragment(), HomeFragmentContract.View {
     override fun setShopListData(shopModels: List<ShopModel>) {
     }
 
-    private fun init() {
-        initBanner()
-        initLittleModuleRecyclerView()
-        initShopsRecyclerView()
+    override fun onError(error: String) {
+
     }
+
 
     private fun initLittleModuleRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(activity)
@@ -65,7 +53,7 @@ class HomeFragment : BaseFragment(), HomeFragmentContract.View {
 
         //判断context是否为空，如果不为空执行let中的代码
         context?.let {
-            val shopAdapter = ShopAdapter(it, presenter.bigModuleDrawables())
+            val shopAdapter = presenter?.bigModuleDrawables()?.let { it1 -> ShopAdapter(it, it1) }
             recyclerview_little_module.adapter = shopAdapter
         }
     }
@@ -78,7 +66,7 @@ class HomeFragment : BaseFragment(), HomeFragmentContract.View {
 
         //判断context是否为空，如果不为空执行let中的代码
         context?.let {
-            val littleModuleAdapter = LittleModuleAdapter(it, presenter.getIconTitleModels())
+            val littleModuleAdapter = presenter?.getIconTitleModels()?.let { it1 -> LittleModuleAdapter(it, it1) }
             recycler_view_shops.adapter = littleModuleAdapter
         }
 
@@ -87,11 +75,28 @@ class HomeFragment : BaseFragment(), HomeFragmentContract.View {
     private fun initBanner() {
         home_banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
                 .setImageLoader(GlideImageLoader)
-                .setImages(presenter.getBannerImages())
+                .setImages(presenter?.getBannerImages())
                 .setBannerAnimation(Transformer.Default)
                 .isAutoPlay(true)
                 .setDelayTime(3000)
                 .setIndicatorGravity(BannerConfig.CENTER)
                 .start()
+    }
+
+    override fun lazyInit() {
+        if (activity != null) {
+            activity.let {
+                it as MainActivity
+                it.setHideStatusBar(true)
+            }
+        }
+    }
+
+    override fun createPresenter(): HomeFragmentContract.Presenter<HomeFragmentContract.View>? {
+        return HomeFragmentPresenter(this)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_home
     }
 }

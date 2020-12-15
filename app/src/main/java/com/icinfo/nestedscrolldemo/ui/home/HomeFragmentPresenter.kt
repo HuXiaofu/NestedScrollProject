@@ -1,6 +1,7 @@
 package com.icinfo.nestedscrolldemo.ui.home
 
 import com.icinfo.nestedscrolldemo.R
+import com.icinfo.nestedscrolldemo.base.BasePresenter
 import com.icinfo.nestedscrolldemo.ui.home.HomeFragmentContract
 import com.icinfo.nestedscrolldemo.ui.home.model.IconTitleModel
 import kotlinx.android.synthetic.main.include_main_tab.view.*
@@ -9,7 +10,7 @@ import kotlinx.android.synthetic.main.include_main_tab.view.*
  *@time：2020/12/1
  *@author:hugaojian
  **/
-public class HomeFragmentPresenter : HomeFragmentContract.Presenter {
+public class HomeFragmentPresenter(view: HomeFragmentContract.View) : BasePresenter<HomeFragmentContract.View>(view),HomeFragmentContract.Presenter<HomeFragmentContract.View> {
 
     private lateinit var mFragment: HomeFragmentContract.View
     override fun getBannerImages(): List<Int> {
@@ -49,20 +50,4 @@ public class HomeFragmentPresenter : HomeFragmentContract.Presenter {
         return bigModuleDrawables
     }
 
-    override fun setContractView(view: HomeFragmentContract.View) {
-        mFragment = view
-    }
-
-    override fun onStart() {
-    }
-
-    private fun initBigModule() {
-        for (i in 0..5){
-
-        }
-    }
-
-    override fun onDestroy() {
-        TODO("Not yet implemented")
-    }
 }

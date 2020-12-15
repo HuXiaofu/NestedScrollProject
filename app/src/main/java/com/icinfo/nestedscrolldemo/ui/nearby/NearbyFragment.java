@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.icinfo.nestedscrolldemo.R;
 import com.icinfo.nestedscrolldemo.base.BaseFragment;
@@ -15,7 +16,7 @@ import com.icinfo.nestedscrolldemo.base.BaseFragment;
  * @time：2020/11/30
  * @author:hugaojian
  **/
-public class NearbyFragment extends BaseFragment {
+public class NearbyFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

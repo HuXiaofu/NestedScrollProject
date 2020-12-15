@@ -27,7 +27,7 @@ open class BaseActivity : AppCompatActivity() {
         when (isHideStatus) {
             true -> {
                 window.addFlags(FLAG_TRANSLUCENT_STATUS)
-                val view = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                val view = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 window.decorView.systemUiVisibility = view
             }
             false -> {

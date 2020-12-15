@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.icinfo.nestedscrolldemo.base.BaseFragment
 
-class TabPagerAdapter(fm:FragmentManager, private val fragmentList:List<BaseFragment>) :FragmentStatePagerAdapter(fm){
+class TabPagerAdapter(fm:FragmentManager, private val fragmentList:List<Fragment>) :FragmentStatePagerAdapter(fm){
 
     override fun getItem(position: Int): Fragment {
         return fragmentList[position]

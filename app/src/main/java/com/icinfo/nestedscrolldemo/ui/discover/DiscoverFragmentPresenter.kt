@@ -1,14 +1,20 @@
 package com.icinfo.nestedscrolldemo.ui.discover
 
-import com.icinfo.nestedscrolldemo.R
+import com.icinfo.nestedscrolldemo.base.BasePresenter
 import com.icinfo.nestedscrolldemo.entity.BannerEntity
+import com.icinfo.nestedscrolldemo.http.BaseResponse
 import com.icinfo.nestedscrolldemo.http.HttpDefaultObserver
-import com.icinfo.nestedscrolldemo.http.RetrofitFactory
 import com.icinfo.nestedscrolldemo.http.RetrofitHelper
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  *@time：2020/12/2
@@ -16,13 +22,17 @@ import io.reactivex.schedulers.Schedulers
  **/
 
 
-class DiscoverFragmentPresenter : DiscoverFragmentContract.Presenter {
+class DiscoverFragmentPresenter(view: DiscoverFragmentContract.View) : BasePresenter<DiscoverFragmentContract.View>(view), DiscoverFragmentContract.Presenter<DiscoverFragmentContract.View> {
 
-    private lateinit var view: DiscoverFragmentContract.View
 
     override fun getImageList() {
 
         RetrofitHelper.getApiService().getBanner()
+                .flatMap {
+                    it.data?.get(0)?.desc = "12345654321"
+                    println(it.data?.get(0)?.desc)
+                    Observable.fromArray(it)
+                }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : HttpDefaultObserver<MutableList<BannerEntity>>() {
@@ -54,8 +64,8 @@ class DiscoverFragmentPresenter : DiscoverFragmentContract.Presenter {
                     override fun onSuccess(t: ArticleEntity) {
                         if (pageNum == 0) {
                             t.datas?.let { loadTopList(it) }
-                        } else{
-                            t.datas?.let { view?.showList(it)}
+                        } else {
+                            t.datas?.let { view?.showList(it) }
                         }
                     }
 
@@ -70,24 +80,4 @@ class DiscoverFragmentPresenter : DiscoverFragmentContract.Presenter {
         TODO("Not yet implemented")
     }
 
-    override fun setContractView(view: DiscoverFragmentContract.View) {
-        this.view = view
-    }
-
-    override fun onStart() {
-    }
-
-    override fun onDestroy() {
-        compositeDisposable?.clear()
-    }
-
-    private var compositeDisposable: CompositeDisposable? = null
-
-    init {
-        compositeDisposable = CompositeDisposable()
-    }
-
-    private fun addSubscribe(disposable: Disposable) {
-        compositeDisposable?.add(disposable)
-    }
 }

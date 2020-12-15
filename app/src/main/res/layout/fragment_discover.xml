@@ -1,81 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/smartRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:srlEnableLoadMore="true"
+    app:srlEnableRefresh="true"
+    app:srlEnableAutoLoadMore="false"
+    app:srlEnableOverScrollBounce="true"
     android:background="@color/white">
-    <!--        <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent-->
-    <!--            android:id="@+id/nestedparent"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:orientation="vertical">-->
 
-    <!--            -->
-
-
-    <!--            <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild-->
-    <!--                android:id="@+id/nestedchild"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="match_parent"-->
-    <!--                android:orientation="vertical">-->
-
-
-    <!--            </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild>-->
-    <!--        </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent>-->
-    <androidx.core.widget.NestedScrollView
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <com.icinfo.nestedscrolldemo.widget.NewFlipperView
-                android:id="@+id/discover_news_flipper"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp" />
+        android:layout_height="35dp"
+        app:srlAccentColor="@color/text_1"
+        app:srlPrimaryColor="@color/common_blue" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/discover_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <!--        <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent-->
+        <!--            android:id="@+id/nestedparent"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:orientation="vertical">-->
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <!--            -->
+
+
+        <!--            <com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild-->
+        <!--                android:id="@+id/nestedchild"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:orientation="vertical">-->
+
+
+        <!--            </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingChild>-->
+        <!--        </com.icinfo.nestedscrolldemo.MyCustomNestedScrollingParent>-->
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.youth.banner.Banner
-                android:id="@+id/discover_banner"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="?actionBarSize" />
-            <androidx.appcompat.widget.Toolbar
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.icinfo.nestedscrolldemo.widget.NewFlipperView
+                    android:id="@+id/discover_news_flipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/discover_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/common_blue"
-                app:layout_collapseMode="pin">
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                <include
-                    android:id="@+id/discover_header"
-                    layout="@layout/include_header" />
+                <com.youth.banner.Banner
+                    android:id="@+id/discover_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="?actionBarSize" />
 
-            </androidx.appcompat.widget.Toolbar>
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/common_blue"
+                    app:layout_collapseMode="pin">
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+                    <include
+                        android:id="@+id/discover_header"
+                        layout="@layout/include_header" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

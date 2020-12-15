@@ -5,8 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
+
 import com.icinfo.nestedscrolldemo.base.BaseActivity;
-import com.icinfo.nestedscrolldemo.base.BaseFragment;
 import com.icinfo.nestedscrolldemo.module.ForumDetailListActivity;
 import com.icinfo.nestedscrolldemo.ui.discover.DiscoverFragment;
 import com.icinfo.nestedscrolldemo.ui.home.HomeFragment;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private List<BaseFragment> fragmentList;
+    private List<Fragment> fragmentList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
