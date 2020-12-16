@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import com.icinfo.nestedscrolldemo.MainActivity
 import com.icinfo.nestedscrolldemo.R
+import com.icinfo.nestedscrolldemo.base.AppBaseActivity
 import com.icinfo.nestedscrolldemo.base.BaseActivity
+import com.icinfo.nestedscrolldemo.base.IBasePresenter
+import com.icinfo.nestedscrolldemo.ui.login.LoginActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -18,11 +21,10 @@ import java.util.concurrent.TimeUnit
  *@time：2020/11/27
  *@author:hugaojian
  **/
-class SplashActivity : BaseActivity() {
+class SplashActivity : AppBaseActivity<IBasePresenter<*>>() {
     private var count = 4
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+
+    override fun init(savedInstanceState: Bundle?) {
         val disposable = Observable.interval(0, 1, TimeUnit.SECONDS)
                 .take((count + 1).toLong())
                 .map { count - it }
@@ -33,14 +35,22 @@ class SplashActivity : BaseActivity() {
                 .subscribe(Consumer {
                     tv_splash_skip.text = "跳过( $it )"
                 }, Consumer {}, Action {
-                    startActivity(Intent(this, MainActivity::class.java))//::表示把一个方法当做一个参数，传递到另一个方法中进行使用，通俗的来讲就是引用一个方法
+                    intent(LoginActivity::class.java,true)
                     finish()
                 })
 
         tv_splash_skip.setOnClickListener {
             disposable.dispose()
-            startActivity(Intent(this, MainActivity::class.java))//::表示把一个方法当做一个参数，传递到另一个方法中进行使用，通俗的来讲就是引用一个方法
+            intent(MainActivity::class.java,false)
             finish()
         }
+    }
+
+    override fun createPresenter(): IBasePresenter<*>? {
+        return null
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_splash
     }
 }

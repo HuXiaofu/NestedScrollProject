@@ -7,7 +7,9 @@ import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
+import com.icinfo.nestedscrolldemo.base.AppBaseActivity;
 import com.icinfo.nestedscrolldemo.base.BaseActivity;
+import com.icinfo.nestedscrolldemo.base.IBasePresenter;
 import com.icinfo.nestedscrolldemo.module.ForumDetailListActivity;
 import com.icinfo.nestedscrolldemo.ui.discover.DiscoverFragment;
 import com.icinfo.nestedscrolldemo.ui.home.HomeFragment;
@@ -16,16 +18,23 @@ import com.icinfo.nestedscrolldemo.ui.nearby.NearbyFragment;
 import com.icinfo.nestedscrolldemo.ui.order.OrderFragment;
 import com.icinfo.nestedscrolldemo.widget.CustomBottomTabWidget;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private List<Fragment> fragmentList;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void onClick(View v) {
+
+        startActivity(new Intent(this, ForumDetailListActivity.class));
+    }
+
+    @Override
+    protected void init(@Nullable Bundle savedInstanceState) {
         CustomBottomTabWidget viewById = findViewById(R.id.bottom_tab);
         fragmentList = new ArrayList<>();
         fragmentList.add(new HomeFragment());
@@ -35,13 +44,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         fragmentList.add(new MineFragment());
 
         viewById.init(getSupportFragmentManager(),fragmentList);
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        findViewById(R.id.my_title).setOnClickListener(this);
+    }
+
+    @Nullable
+    @Override
+    protected IBasePresenter<?> createPresenter() {
+        return null;
     }
 
     @Override
-    public void onClick(View v) {
-
-        startActivity(new Intent(this, ForumDetailListActivity.class));
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 }

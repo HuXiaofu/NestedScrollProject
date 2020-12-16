@@ -11,12 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.appbar.AppBarLayout;
 import com.icinfo.nestedscrolldemo.R;
 import com.icinfo.nestedscrolldemo.base.BaseActivity;
+import com.icinfo.nestedscrolldemo.base.BasePresenter;
+import com.icinfo.nestedscrolldemo.base.IBasePresenter;
 
 /**
  * @time：2020/11/25
  * @author:hugaojian
  **/
-public class ForumDetailListActivity extends BaseActivity {
+public class ForumDetailListActivity extends AppCompatActivity {
 
     private AppBarLayout appBar;
 
@@ -24,7 +26,7 @@ public class ForumDetailListActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
-        setHideStatusBar(false);
+//        setHideStatusBar(false);
         initTop();
     }
 

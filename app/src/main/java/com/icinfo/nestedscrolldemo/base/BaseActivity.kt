@@ -14,13 +14,27 @@ import io.reactivex.plugins.RxJavaPlugins
  *@time：2020/11/27
  *@author:hugaojian
  **/
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<P : IBasePresenter<*>> : AppCompatActivity() {
 
+    protected var presenter: P? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setHideStatusBar(true)
+        val layoutId = getLayoutId()
+        if (layoutId != 0) {
+            setContentView(layoutId)
+        }
+        presenter = createPresenter()
+        presenter?.let { lifecycle.addObserver(it) }
         setRxJavaErrorHandler()
+        init(savedInstanceState)
     }
+
+    protected abstract fun init(savedInstanceState: Bundle?)
+
+    protected abstract fun createPresenter(): P?
+
+    protected abstract fun getLayoutId(): Int
 
     @SuppressLint("InlinedApi")
     fun setHideStatusBar(isHideStatus: Boolean) {
@@ -37,8 +51,9 @@ open class BaseActivity : AppCompatActivity() {
         }
 
     }
-    private fun setRxJavaErrorHandler(){
-        RxJavaPlugins.setErrorHandler{
+
+    private fun setRxJavaErrorHandler() {
+        RxJavaPlugins.setErrorHandler {
             it.printStackTrace()
         }
     }
