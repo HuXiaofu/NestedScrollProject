@@ -1,21 +1,28 @@
 package com.icinfo.nestedscrolldemo.http
 
 import com.icinfo.nestedscrolldemo.entity.BannerEntity
+import com.icinfo.nestedscrolldemo.ui.login.UserEntity
 import com.icinfo.nestedscrolldemo.ui.discover.ArticleEntity
 import io.reactivex.Observable
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
+import io.reactivex.Single
+import io.reactivex.SingleObserver
+import retrofit2.http.*
 
 interface ApiService {
 
     @GET("/article/list/{page}/json")
-    fun getHomeList(@Path("page") pageNo:Int):Observable<BaseResponse<ArticleEntity>>
+    fun getHomeList(@Path("page") pageNo: Int): Observable<BaseResponse<ArticleEntity>>
+
     /**
      * banner
      */
     @GET("/banner/json")
-    fun getBanner():Observable<BaseResponse<MutableList<BannerEntity>>>
+    fun getBanner(): Observable<BaseResponse<MutableList<BannerEntity>>>
 
+    /**
+     * login
+     */
+    @FormUrlEncoded
+    @POST("/user/login")
+    fun login(@Field("username") userName: String, @Field("password") password: String): Single<BaseResponse<UserEntity>>
 }

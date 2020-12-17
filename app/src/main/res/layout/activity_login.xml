@@ -69,10 +69,12 @@
         android:layout_height="35dp"
         android:padding="10dp"
         android:id="@+id/icVlear"
+        android:clickable="true"
         android:src="@mipmap/username_clear"
         app:layout_constraintTop_toTopOf="@id/etUseName"
         app:layout_constraintBottom_toBottomOf="@id/etUseName"
-        app:layout_constraintRight_toRightOf="@id/etUseName" />
+        app:layout_constraintRight_toRightOf="@id/etUseName"
+        android:focusable="true" />
 
     <View
         android:id="@+id/username_line"
@@ -89,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:hint="请输入密码"
+        android:inputType="numberPassword"
         android:textColor="@color/text_1"
         android:textSize="15sp"
         android:background="@null"
@@ -99,10 +102,12 @@
         android:layout_height="35dp"
         android:padding="10dp"
         android:id="@+id/icSee"
+        android:clickable="true"
         android:src="@mipmap/password_show"
         app:layout_constraintTop_toTopOf="@id/etPassword"
         app:layout_constraintBottom_toBottomOf="@id/etPassword"
-        app:layout_constraintRight_toRightOf="@id/etPassword" />
+        app:layout_constraintRight_toRightOf="@id/etPassword"
+        android:focusable="true" />
 
     <View
         android:id="@+id/password_line"

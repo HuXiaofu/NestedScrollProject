@@ -28,11 +28,7 @@ class DiscoverFragmentPresenter(view: DiscoverFragmentContract.View) : BasePrese
     override fun getImageList() {
 
         RetrofitHelper.getApiService().getBanner()
-                .flatMap {
-                    it.data?.get(0)?.desc = "12345654321"
-                    println(it.data?.get(0)?.desc)
-                    Observable.fromArray(it)
-                }
+
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : HttpDefaultObserver<MutableList<BannerEntity>>() {
